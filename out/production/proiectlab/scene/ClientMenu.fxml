@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientMenuController">
+    <top>
+        <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="name" layoutX="31.0" layoutY="14.0" text="NumeClient" />
+                <Hyperlink fx:id="account" layoutX="31.0" layoutY="35.0" text="Cont" />
+            </children>
+        </Pane>
+    </top>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="274.0" layoutY="22.0" text="Lista Carti" />
+                <TableView layoutX="18.0" layoutY="64.0" prefHeight="200.0" prefWidth="561.0">
+                    <columns>
+                        <TableColumn prefWidth="188.0" text="Titlu carte" />
+                        <TableColumn prefWidth="148.0" text="Nume autor" />
+                        <TableColumn prefWidth="96.0" text="Gen carte" />
+                        <TableColumn minWidth="5.0" prefWidth="64.0" text="Rating" />
+                        <TableColumn prefWidth="64.0" text="Stoc" />
+                    </columns>
+                </TableView>
+            </children>
+        </Pane>
+    </center>
+    <bottom>
+        <Pane prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="14.0" layoutY="12.0" text="\@2021 All rights reserved" />
+            </children>
+        </Pane>
+    </bottom>
+</BorderPane>
