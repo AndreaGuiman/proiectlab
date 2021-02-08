@@ -24,6 +24,13 @@ public class ClientService {
         return clientDao.findAll();
     }
 
+    public Clients findById(int id) throws Exception{
+        List<Clients> clientList = clientDao.findById(id);
+        if(clientList.size() == 0)
+            throw new Exception("Client not Found");
+        return clientList.get(0);
+    }
+
     public Clients findByFirstName(String firstName){
         return clientDao.findByFirstName(firstName);
     }

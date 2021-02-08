@@ -8,7 +8,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Users;
 import service.UserService;
+
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class LoginController {
     @FXML
@@ -43,6 +46,13 @@ public class LoginController {
         if(userService.findByUsername(username.getText()) != null){
             Users users = userService.findByUsername(username.getText());
             if(users.getPassword().equals(password.getText())){
+                //scriem in fisier datele de login ale userului, ca sa il putem "tine minte" in aplicatie
+                try(PrintWriter writer = new PrintWriter(new File("src/session/Session.txt"))){
+                    writer.println(username.getText());
+                    //writer.println(password.getText());
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
                 //login
                 if(users.getIdClient() != null){
                     //intram pe meniu de client

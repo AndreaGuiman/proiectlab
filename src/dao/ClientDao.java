@@ -31,6 +31,18 @@ public class ClientDao extends GenericDao<Clients> {
         }
     }
 
+    public List<Clients> findById(int id) {
+        EntityManager em = getEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<model.Clients> cq = cb.createQuery(model.Clients.class);
+        Root<model.Clients> r = cq.from(model.Clients.class);
+        ParameterExpression<Integer> idd = cb.parameter(int.class);
+        cq.select(r).where(cb.equal(r.get("idClient"), idd));
+        TypedQuery<model.Clients> query = em.createQuery(cq);
+        query.setParameter(idd, id);
+        return query.getResultList();
+    }
+
     public Clients findByFirstName(String firstName){
         EntityManager em = getEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();

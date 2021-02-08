@@ -10,11 +10,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Books;
+import model.Clients;
+import model.Users;
 import service.BookService;
+import service.ClientService;
+import service.UserService;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,8 +39,9 @@ public class ClientMenuController {
     @FXML
     ChoiceBox<String> authorSelection, genreSelection;
 
-    public void initialize(){
-        username.setText("USERNAME");
+    public void initialize() throws Exception {
+        Clients clients = getClient();
+        username.setText(clients.getFirstNameClient());
 
         bookNameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
         bookAuthorColumn.setCellValueFactory(new PropertyValueFactory<>("authorName"));
@@ -220,5 +226,25 @@ public class ClientMenuController {
         Collections.sort(booksList);
         Collections.reverse(booksList);
         System.out.println(booksList);
+    }
+
+    public String getUsernameClient(){
+        String username = null;
+        try(BufferedReader br = new BufferedReader(new FileReader("src/session/Session.txt"))){
+            String usernameTmp;
+            while((usernameTmp = br.readLine()) != null)
+                username = usernameTmp;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return username;
+    }
+
+    public Clients getClient() throws Exception {
+        String usernameTmp = getUsernameClient();
+        UserService userService = new UserService();
+        Users users = userService.findByUsername(usernameTmp);
+        ClientService clientService = new ClientService();
+        return clientService.findById(users.getIdClient());
     }
 }
