@@ -20,4 +20,8 @@ public class BookService {
     public List<Books> getAllBooks(){
         return bookDao.findAll();
     }
+
+    public Books findByBookName(String bookName){
+        return bookDao.findByBookName(bookName);
+    }
 }

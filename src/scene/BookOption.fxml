@@ -7,20 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookOption">
+<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookOptionController">
    <children>
       <ImageView fitHeight="123.0" fitWidth="111.0" layoutX="120.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="42.0" layoutY="150.0" text="Nume carte:" />
-      <Label layoutX="120.0" layoutY="150.0" prefHeight="17.0" prefWidth="117.0" />
+      <Label layoutX="120.0" layoutY="150.0" prefHeight="17.0" prefWidth="117.0" fx:id="bookName"/>
       <Label layoutX="42.0" layoutY="167.0" text="Nume Autor:" />
-      <Label layoutX="120.0" layoutY="167.0" prefHeight="17.0" prefWidth="117.0" />
+      <Label layoutX="120.0" layoutY="167.0" prefHeight="17.0" prefWidth="117.0" fx:id="authorName"/>
       <Label layoutX="42.0" layoutY="184.0" text="Gen:" />
-      <Label layoutX="71.0" layoutY="184.0" prefHeight="17.0" prefWidth="166.0" />
+      <Label layoutX="71.0" layoutY="184.0" prefHeight="17.0" prefWidth="166.0" fx:id="bookGenre"/>
       <Label layoutX="42.0" layoutY="201.0" text="Rating:" />
-      <Label layoutX="82.0" layoutY="201.0" prefHeight="17.0" prefWidth="155.0" />
+      <Label layoutX="82.0" layoutY="201.0" prefHeight="17.0" prefWidth="155.0" fx:id="bookRating"/>
       <Label layoutX="42.0" layoutY="218.0" text="Stoc biblioteca:" />
-      <Label layoutX="126.0" layoutY="218.0" prefHeight="17.0" prefWidth="111.0" />
-      <Button layoutX="134.0" layoutY="247.0" mnemonicParsing="false" text="Rezerva carte" />
-      <Hyperlink layoutX="19.0" layoutY="275.0" text="Acorda un review " />
+      <Label layoutX="126.0" layoutY="218.0" prefHeight="17.0" prefWidth="111.0" fx:id="bookStock"/>
+      <Button layoutX="134.0" layoutY="247.0" mnemonicParsing="false" text="Rezerva carte" fx:id="buttonReserve" onAction="#reserveAction"/>
+      <Hyperlink layoutX="19.0" layoutY="275.0" text="Acorda un review" />
    </children>
 </AnchorPane>

@@ -74,4 +74,15 @@ public class Requests {
     public int hashCode() {
         return Objects.hash(idRequest, idClient, idBook, startDate, endDate);
     }
+
+    @Override
+    public String toString() {
+        return "Requests{" +
+                "idRequest=" + idRequest +
+                ", idClient=" + idClient +
+                ", idBook=" + idBook +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

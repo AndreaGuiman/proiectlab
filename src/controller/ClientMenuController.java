@@ -16,9 +16,7 @@ import service.BookService;
 import service.ClientService;
 import service.UserService;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -174,9 +172,9 @@ public class ClientMenuController {
         }
 
 
-        System.out.println(booksObservableList);
-        String authorName = authorSelection.getSelectionModel().getSelectedItem().toString();
-        //System.out.println(authorName);
+//        System.out.println(booksObservableList);
+//        String authorName = authorSelection.getSelectionModel().getSelectedItem();
+//        System.out.println(authorName);
     }
 
 
@@ -188,6 +186,12 @@ public class ClientMenuController {
 
     public void openBookOption() throws IOException {
         if(tableBooks.getSelectionModel().getSelectedItem() != null) {
+            try(PrintWriter writer = new PrintWriter(("src/session/BookSession.txt"))){
+                writer.println(tableBooks.getSelectionModel().getSelectedItem().getBookName());
+                //writer.println(password.getText());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
             String bookName = tableBooks.getSelectionModel().getSelectedItem().getBookName();
             System.out.println(tableBooks.getSelectionModel().getSelectedItem());
             Parent root = FXMLLoader.load(getClass().getResource("../scene/BookOption.fxml"));

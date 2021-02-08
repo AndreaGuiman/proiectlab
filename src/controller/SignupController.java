@@ -15,6 +15,7 @@ import service.ClientService;
 import service.UserService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class SignupController {
     @FXML
@@ -55,6 +56,12 @@ public class SignupController {
             Clients clients1 = clientService.findByFirstName(firstName.getText());
             Users users = new Users( clients1.getIdClient(), usernameField.getText(), passwordField.getText());
             userService.addUser(users);
+            try(PrintWriter writer = new PrintWriter(("src/session/Session.txt"))){
+                writer.println(usernameField.getText());
+                //writer.println(password.getText());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
