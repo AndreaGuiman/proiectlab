@@ -11,7 +11,6 @@ public class Managers {
     private String telephoneNumber;
     private String emailManager;
 
-
     @Id
     @Column(name = "idManager")
     public int getIdManager() {

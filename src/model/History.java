@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 public class History {
+    private Long id;
     private int idHistory;
     private Integer idBook;
     private Integer idClient;

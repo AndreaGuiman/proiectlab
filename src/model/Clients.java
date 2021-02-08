@@ -11,15 +11,14 @@ public class Clients {
     private String telephoneNumber;
     private String emailClient;
 
+    public Clients() {
+    }
+
     public Clients(String firstNameClient, String lastNameClient, String telephoneNumber, String emailClient) {
         this.firstNameClient = firstNameClient;
         this.lastNameClient = lastNameClient;
         this.telephoneNumber = telephoneNumber;
         this.emailClient = emailClient;
-    }
-
-    public Clients() {
-
     }
 
     @Id

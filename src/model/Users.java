@@ -11,15 +11,16 @@ public class Users {
     private String username;
     private String password;
 
+    public Users() {
+
+    }
+
     public Users(Integer idClient, String username, String password) {
         this.idClient = idClient;
         this.username = username;
         this.password = password;
     }
 
-    public Users() {
-
-    }
 
     @Id
     @Column(name = "idUser")

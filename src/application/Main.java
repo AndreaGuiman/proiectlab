@@ -22,7 +22,6 @@ public class Main extends Application {
         primaryStage.show();
     }
     public static void main(String[] args) {
-        launch(args);
 //        UserService userService = new UserService();
 //        List<Users> usersList = userService.getAllUsers();
 //        System.out.println(usersList);
@@ -33,5 +32,7 @@ public class Main extends Application {
 //
 //        ClientService clientService= new ClientService();
 //        System.out.println(clientService.getAllClients());
+        launch(args);
+
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,24 +13,29 @@
     <top>
         <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="name" layoutX="31.0" layoutY="14.0" text="NumeClient" />
-                <Hyperlink fx:id="account" layoutX="31.0" layoutY="35.0" text="Cont" />
+                <Label fx:id="username" layoutX="31.0" layoutY="14.0" text="" />
+                <Hyperlink fx:id="hyperlinkClientAccount" layoutX="31.0" layoutY="35.0" onAction="#goToAccountDetails" text="Cont" />
+                <Label layoutX="272.0" layoutY="43.0" text="Lista Carti" />
             </children>
         </Pane>
     </top>
     <center>
         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="274.0" layoutY="22.0" text="Lista Carti" />
-                <TableView layoutX="18.0" layoutY="64.0" prefHeight="200.0" prefWidth="561.0">
+                <TableView fx:id="tableBooks" layoutX="18.0" layoutY="77.0" onMouseClicked="#openBookOption" prefHeight="218.0" prefWidth="561.0">
                     <columns>
-                        <TableColumn prefWidth="188.0" text="Titlu carte" />
-                        <TableColumn prefWidth="148.0" text="Nume autor" />
-                        <TableColumn prefWidth="96.0" text="Gen carte" />
-                        <TableColumn minWidth="5.0" prefWidth="64.0" text="Rating" />
-                        <TableColumn prefWidth="64.0" text="Stoc" />
+                        <TableColumn fx:id="bookNameColumn" prefWidth="188.0" text="Titlu carte" />
+                        <TableColumn fx:id="bookAuthorColumn" prefWidth="148.0" text="Nume autor" />
+                        <TableColumn fx:id="bookGenreColumn" prefWidth="96.0" text="Gen carte" />
+                        <TableColumn fx:id="bookRatingColumn" minWidth="5.0" prefWidth="64.0" text="Rating" />
+                        <TableColumn fx:id="bookStockColumn" prefWidth="64.0" text="Stoc" />
                     </columns>
                 </TableView>
+            <ChoiceBox layoutX="114.0" layoutY="10.0" prefWidth="150.0" fx:id="authorSelection"/>
+            <Label layoutX="18.0" layoutY="14.0" text="Selecteaza autor:" />
+            <ChoiceBox layoutX="114.0" layoutY="41.0" prefWidth="150.0" fx:id="genreSelection"/>
+            <Label layoutX="18.0" layoutY="45.0" text="Selecteaza gen:" />
+            <Button layoutX="299.0" layoutY="29.0" mnemonicParsing="false" text="Filtreaza" fx:id="buttonFilter" onAction="#filterSearch"/>
             </children>
         </Pane>
     </center>

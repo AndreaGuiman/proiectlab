@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Books {
+public class Books implements Comparable<Books>{
     private int idBook;
     private String bookName;
     private String bookGenre;
     private Integer bookRating;
-    private Integer idAuthor;
+    private String authorName;
     private Integer stoc;
 
     @Id
@@ -53,13 +53,13 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "idAuthor")
-    public Integer getIdAuthor() {
-        return idAuthor;
+    @Column(name = "authorName")
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setIdAuthor(Integer idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     @Basic
@@ -77,12 +77,12 @@ public class Books {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Books books = (Books) o;
-        return idBook == books.idBook && Objects.equals(bookName, books.bookName) && Objects.equals(bookGenre, books.bookGenre) && Objects.equals(bookRating, books.bookRating) && Objects.equals(idAuthor, books.idAuthor) && Objects.equals(stoc, books.stoc);
+        return idBook == books.idBook && Objects.equals(bookName, books.bookName) && Objects.equals(bookGenre, books.bookGenre) && Objects.equals(bookRating, books.bookRating) && Objects.equals(authorName, books.authorName) && Objects.equals(stoc, books.stoc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBook, bookName, bookGenre, bookRating, idAuthor, stoc);
+        return Objects.hash(idBook, bookName, bookGenre, bookRating, authorName, stoc);
     }
 
     @Override
@@ -92,8 +92,13 @@ public class Books {
                 ", bookName='" + bookName + '\'' +
                 ", bookGenre='" + bookGenre + '\'' +
                 ", bookRating=" + bookRating +
-                ", idAuthor=" + idAuthor +
+                ", authorName='" + authorName + '\'' +
                 ", stoc=" + stoc +
                 '}';
+    }
+
+    public int compareTo(Books books) {
+        int bookRating = ((Books) books).getBookRating();
+        return bookRating - this.bookRating;
     }
 }
