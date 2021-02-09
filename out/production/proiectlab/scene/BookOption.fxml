@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookOptionController">
+   <children>
+      <ImageView fitHeight="123.0" fitWidth="111.0" layoutX="120.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="42.0" layoutY="150.0" text="Nume carte:" />
+      <Label fx:id="bookName" layoutX="120.0" layoutY="150.0" prefHeight="17.0" prefWidth="117.0" />
+      <Label layoutX="42.0" layoutY="167.0" text="Nume Autor:" />
+      <Label fx:id="authorName" layoutX="120.0" layoutY="167.0" prefHeight="17.0" prefWidth="117.0" />
+      <Label layoutX="42.0" layoutY="184.0" text="Gen:" />
+      <Label fx:id="bookGenre" layoutX="71.0" layoutY="184.0" prefHeight="17.0" prefWidth="166.0" />
+      <Label layoutX="42.0" layoutY="201.0" text="Rating:" />
+      <Label fx:id="bookRating" layoutX="82.0" layoutY="201.0" prefHeight="17.0" prefWidth="155.0" />
+      <Label layoutX="42.0" layoutY="218.0" text="Stoc biblioteca:" />
+      <Label fx:id="bookStock" layoutX="126.0" layoutY="218.0" prefHeight="17.0" prefWidth="111.0" />
+      <Button fx:id="buttonReserve" layoutX="134.0" layoutY="247.0" mnemonicParsing="false" onAction="#reserveAction" text="Rezerva carte" />
+      <Hyperlink layoutX="19.0" layoutY="275.0" text="Acorda un review" />
+      <Hyperlink layoutX="277.0" layoutY="275.0" text="Inapoi" fx:id="hyperlinkPaginaInapoi" onAction="#inapoiAction" />
+   </children>
+</AnchorPane>
