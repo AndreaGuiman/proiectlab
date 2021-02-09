@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowClientsController">
+    <children>
+        <Label layoutX="70.0" layoutY="32.0" text="Manager:" />
+        <Label fx:id="managerName" layoutX="128.0" layoutY="32.0" prefHeight="17.0" prefWidth="97.0" />
+        <Label fx:id="managerUsername" layoutX="103.0" layoutY="49.0" prefHeight="17.0" prefWidth="97.0" />
+        <Label layoutX="70.0" layoutY="49.0" text="User:" />
+        <Label layoutX="270.0" layoutY="83.0" text="Lista Clienti" />
+      <TableView layoutX="33.0" layoutY="142.0" prefHeight="200.0" prefWidth="540.0" fx:id="tableClients">
+        <columns>
+          <TableColumn prefWidth="92.0" text="Nume client" fx:id="firstNameColumn"/>
+          <TableColumn prefWidth="105.0" text="Prenume client" fx:id="lastNameColumn" />
+            <TableColumn prefWidth="152.0" text="Numar telefon" fx:id="telNoColumn"/>
+            <TableColumn prefWidth="190.0" text="Adresa Email" fx:id="emailColumn"/>
+        </columns>
+      </TableView>
+      <Hyperlink layoutX="33.0" layoutY="363.0" text="Meniu Principal" fx:id="hyperlinkMainMenu" onMouseClicked="#goToMainMenu"/>
+    </children>
+
+</AnchorPane>

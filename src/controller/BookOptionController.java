@@ -1,28 +1,44 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import model.Books;
 import model.Clients;
 import model.Requests;
 import model.Users;
 import service.BookService;
 import service.ClientService;
+import service.RequestService;
 import service.UserService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class BookOptionController {
     @FXML
     Label bookName, authorName, bookGenre, bookRating, bookStock;
+    @FXML
+    Button buttonReserve;
+    @FXML
+    Hyperlink hyperlinkPaginaInapoi;
+
     public void initialize(){
         //System.out.println(getBook());
         Books books = getBook();
+        if(books.getStoc() == 0){
+            buttonReserve.setDisable(true);
+        }
         bookName.setText(books.getBookName());
         authorName.setText(books.getAuthorName());
         bookGenre.setText(books.getBookGenre());
@@ -42,7 +58,19 @@ public class BookOptionController {
         requests.setIdClient(clients.getIdClient());
         requests.setStartDate(date);
         requests.setEndDate(dateForReturnSql);
-        System.out.println(requests);
+        //System.out.println(requests);
+        RequestService requestService = new RequestService();
+        requestService.addRequest(requests);
+        books.setStoc((books.getStoc() - 1));
+    }
+
+    public void inapoiAction() throws IOException {
+        hyperlinkPaginaInapoi.getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(getClass().getResource("../scene/ClientMenu.fxml"));
+        Stage paginaInapoi = new Stage();
+        paginaInapoi.setTitle("CLIENT MENU");
+        paginaInapoi.setScene(new Scene(root));
+        paginaInapoi.show();
     }
 
     public String getBookNameFromFile(){
@@ -82,4 +110,5 @@ public class BookOptionController {
         ClientService clientService = new ClientService();
         return clientService.findById(users.getIdClient());
     }
+
 }

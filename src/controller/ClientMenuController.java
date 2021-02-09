@@ -25,7 +25,7 @@ public class ClientMenuController {
     @FXML
     Button buttonFilter;
     @FXML
-    Hyperlink hyperlinkClientAccount;
+    Hyperlink hyperlinkClientAccount, hyperlinkLogOut;
     @FXML
     Label username;
     @FXML
@@ -39,7 +39,7 @@ public class ClientMenuController {
 
     public void initialize() throws Exception {
         Clients clients = getClient();
-        username.setText(clients.getFirstNameClient());
+        username.setText(clients.getFirstNameClient() + " " + clients.getLastNameClient());
 
         bookNameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
         bookAuthorColumn.setCellValueFactory(new PropertyValueFactory<>("authorName"));
@@ -210,6 +210,15 @@ public class ClientMenuController {
         accountDetails.setScene(new Scene(root));
         accountDetails.setTitle("ACCOUNT DETAILS");
         accountDetails.show();
+    }
+
+    public void logOutAction() throws IOException {
+        hyperlinkLogOut.getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(getClass().getResource("../scene/Login.fxml"));
+        Stage login = new Stage();
+        login.setScene(new Scene(root));
+        login.setTitle("LOGIN");
+        login.show();
     }
 
     //sortare carti, dupa ratingul cartilor
