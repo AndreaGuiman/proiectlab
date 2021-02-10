@@ -32,6 +32,10 @@ public class Main extends Application {
 //
 //        ClientService clientService= new ClientService();
 //        System.out.println(clientService.getAllClients());
+//        ClientService clientService = new ClientService();
+//        System.out.println(clientService.getAllClients());
+//        BookService bookService = new BookService();
+//        System.out.println(bookService.getAllBooks());
         launch(args);
 
     }

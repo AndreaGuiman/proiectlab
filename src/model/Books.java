@@ -12,6 +12,17 @@ public class Books implements Comparable<Books>{
     private String authorName;
     private Integer stoc;
 
+    public Books(String bookName, String bookGenre, String authorName, Integer stoc) {
+        this.bookName = bookName;
+        this.bookGenre = bookGenre;
+        this.authorName = authorName;
+        this.stoc = stoc;
+    }
+
+    public Books() {
+
+    }
+
     @Id
     @Column(name = "idBook")
     public int getIdBook() {

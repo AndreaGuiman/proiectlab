@@ -4,6 +4,7 @@ import dao.RequestDao;
 import model.Requests;
 
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class RequestService {
     private RequestDao requestDao;
@@ -18,5 +19,9 @@ public class RequestService {
 
     public void addRequest(Requests requests){
         requestDao.create(requests);
+    }
+
+    public List<Requests> getAllRequests(){
+        return requestDao.findAll();
     }
 }

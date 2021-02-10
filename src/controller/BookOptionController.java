@@ -61,7 +61,7 @@ public class BookOptionController {
         //System.out.println(requests);
         RequestService requestService = new RequestService();
         requestService.addRequest(requests);
-        books.setStoc((books.getStoc() - 1));
+
     }
 
     public void inapoiAction() throws IOException {

@@ -17,11 +17,20 @@ public class BookService {
         }
     }
 
+    public void createBook (Books books){
+        bookDao.create(books);
+    }
+
+
     public List<Books> getAllBooks(){
         return bookDao.findAll();
     }
 
     public Books findByBookName(String bookName){
         return bookDao.findByBookName(bookName);
+    }
+
+    public void updateBook(Books books){
+        bookDao.update(books);
     }
 }

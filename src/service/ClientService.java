@@ -20,6 +20,7 @@ public class ClientService {
     public void addClient(Clients clients){
         clientDao.create(clients);
     }
+
     public List<Clients> getAllClients(){
         return clientDao.findAll();
     }

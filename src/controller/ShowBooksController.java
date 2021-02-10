@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Books;
@@ -52,6 +49,7 @@ public class ShowBooksController {
         ObservableList<Books> booksObservableList = FXCollections.observableArrayList(getAllBooks());
         tableBooks.setItems(booksObservableList);
     }
+
 
     public List<Books> getAllBooks(){
         BookService bookService = new BookService();
