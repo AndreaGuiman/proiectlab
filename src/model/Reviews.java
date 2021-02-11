@@ -11,6 +11,16 @@ public class Reviews {
     private Integer idClient;
     private Integer bookRating;
 
+    public Reviews() {
+    }
+
+    public Reviews(String reviewText, Integer idBook, Integer idClient, Integer bookRating) {
+        this.reviewText = reviewText;
+        this.idBook = idBook;
+        this.idClient = idClient;
+        this.bookRating = bookRating;
+    }
+
     @Id
     @Column(name = "idReview")
     public int getIdReview() {
@@ -72,5 +82,16 @@ public class Reviews {
     @Override
     public int hashCode() {
         return Objects.hash(idReview, reviewText, idBook, idClient, bookRating);
+    }
+
+    @Override
+    public String toString() {
+        return "Reviews{" +
+                "idReview=" + idReview +
+                ", reviewText='" + reviewText + '\'' +
+                ", idBook=" + idBook +
+                ", idClient=" + idClient +
+                ", bookRating=" + bookRating +
+                '}';
     }
 }

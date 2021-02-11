@@ -24,7 +24,7 @@
         <Label fx:id="telNo" layoutX="131.0" layoutY="254.0" prefHeight="17.0" prefWidth="111.0" />
         <Label layoutX="22.0" layoutY="200.0" text="Prenume:" />
         <Label fx:id="lastName" layoutX="81.0" layoutY="200.0" prefHeight="17.0" prefWidth="134.0" />
-      <TableView layoutX="258.0" layoutY="100.0" prefHeight="200.0" prefWidth="331.0" fx:id="tableRequests">
+      <TableView layoutX="258.0" layoutY="100.0" prefHeight="200.0" prefWidth="331.0" fx:id="tableRequests" onMouseClicked="#openBook">
         <columns>
           <TableColumn prefWidth="75.0" text="Nume carte" fx:id="bookNameColumn"/>
           <TableColumn prefWidth="75.0" text="Nume autor" fx:id="authorNameColumn"/>

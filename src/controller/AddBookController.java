@@ -45,6 +45,7 @@ public class AddBookController {
             Books books = bookService.findByBookName(numeCarte.getText());
             if(books.getAuthorName().equals(numeAutor.getText())){
                 books.setStoc((books.getStoc()+1));
+                System.out.println(books);
                 bookService.updateBook(books);
             }
         }
