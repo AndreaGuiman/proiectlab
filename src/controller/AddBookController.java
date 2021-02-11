@@ -1,6 +1,7 @@
 package controller;
 
 
+import exception.IncorrectFileNameException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,24 +53,31 @@ public class AddBookController {
         else{
             Books newBook = new Books(numeCarte.getText(), genCarte.getText(), numeAutor.getText(), 1);
             bookService.createBook(newBook);
-        }
-        buttonAdaugaCarte.getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("../scene/ManagerMenu.fxml"));
-        Stage managerMenuStage = new Stage();
-        managerMenuStage.setTitle("MANAGER MENU");
-        managerMenuStage.setScene(new Scene(root));
-        managerMenuStage.show();
 
-        //System.out.println(newBook);
+        }
+        try {
+            buttonAdaugaCarte.getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("../scene/ManagerMenu.fxml"));
+            Stage managerMenuStage = new Stage();
+            managerMenuStage.setTitle("MANAGER MENU");
+            managerMenuStage.setScene(new Scene(root));
+            managerMenuStage.show();
+        }catch (IncorrectFileNameException e){
+            e.printStackTrace();
+        }
     }
 
 
     public void goToManagerMenu() throws IOException {
-        hyperlinkMainMenu.getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("../scene/ManagerMenu.fxml"));
-        Stage managerMenuStage = new Stage();
-        managerMenuStage.setTitle("MANAGER MENU");
-        managerMenuStage.setScene(new Scene(root));
-        managerMenuStage.show();
+        try {
+            hyperlinkMainMenu.getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("../scene/ManagerMenu.fxml"));
+            Stage managerMenuStage = new Stage();
+            managerMenuStage.setTitle("MANAGER MENU");
+            managerMenuStage.setScene(new Scene(root));
+            managerMenuStage.show();
+        }catch (IncorrectFileNameException e){
+            e.printStackTrace();
+        }
     }
 }

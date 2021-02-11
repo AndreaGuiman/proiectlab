@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +17,11 @@ import service.ClientService;
 import service.RequestService;
 import service.UserService;
 import wrapper.ClientAccountWrapper;
-import wrapper.RequestWrapper;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -75,7 +74,7 @@ public class ClientAccountController {
         invoice(clientAccountWrapperList);
     }
 
-    public void invoice(List<ClientAccountWrapper> clientAccountWrapperList){
+    public void invoice(List<ClientAccountWrapper> clientAccountWrapperList) throws InterruptedException {
         for(ClientAccountWrapper clientAccountWrapperIterator: clientAccountWrapperList){
             if(clientAccountWrapperIterator.getEndDate().compareTo(Date.valueOf(LocalDate.now())) == 0){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -85,6 +84,23 @@ public class ClientAccountController {
                 alert.setHeaderText(null);
                 alert.show();
             }
+        }
+    }
+
+    public void openBook() throws IOException {
+        if(tableRequests.getSelectionModel().getSelectedItem() != null){
+            try(PrintWriter writer = new PrintWriter(("src/session/BookSession.txt"))){
+                writer.println(tableRequests.getSelectionModel().getSelectedItem().getBookName());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            String bookName = tableRequests.getSelectionModel().getSelectedItem().getBookName();
+            //System.out.println(tableRequests.getSelectionModel().getSelectedItem());
+            Parent root = FXMLLoader.load(getClass().getResource("../scene/BookReview.fxml"));
+            Stage bookReview = new Stage();
+            bookReview.setScene(new Scene(root));
+            bookReview.setTitle(bookName);
+            bookReview.show();
         }
     }
 

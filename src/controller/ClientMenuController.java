@@ -154,7 +154,7 @@ public class ClientMenuController {
 
         if(!authorSelected && genreSelected){
             for(Books booksIterator:booksList){
-                if(booksIterator.getAuthorName().equals(genreSelection.getSelectionModel().getSelectedItem())){
+                if(booksIterator.getBookGenre().equals(genreSelection.getSelectionModel().getSelectedItem())){
                     booksObservableList.add(booksIterator);
                 }
             }
@@ -188,12 +188,12 @@ public class ClientMenuController {
         if(tableBooks.getSelectionModel().getSelectedItem() != null) {
             try(PrintWriter writer = new PrintWriter(("src/session/BookSession.txt"))){
                 writer.println(tableBooks.getSelectionModel().getSelectedItem().getBookName());
-                //writer.println(password.getText());
             }catch (Exception e) {
                 e.printStackTrace();
             }
             String bookName = tableBooks.getSelectionModel().getSelectedItem().getBookName();
             System.out.println(tableBooks.getSelectionModel().getSelectedItem());
+            tableBooks.getScene().getWindow().hide();
             Parent root = FXMLLoader.load(getClass().getResource("../scene/BookOption.fxml"));
             Stage bookOption = new Stage();
             bookOption.setScene(new Scene(root));

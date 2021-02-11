@@ -1,5 +1,6 @@
 package controller;
 
+import exception.IncorrectFileNameException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,6 @@ public class BookOptionController {
     Hyperlink hyperlinkPaginaInapoi;
 
     public void initialize(){
-        //System.out.println(getBook());
         Books books = getBook();
         if(books.getStoc() == 0){
             buttonReserve.setDisable(true);
@@ -58,19 +58,32 @@ public class BookOptionController {
         requests.setIdClient(clients.getIdClient());
         requests.setStartDate(date);
         requests.setEndDate(dateForReturnSql);
-        //System.out.println(requests);
         RequestService requestService = new RequestService();
         requestService.addRequest(requests);
 
+        try {
+            buttonReserve.getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("../scene/CLIENT MENU.fxml"));
+            Stage clientMenu = new Stage();
+            clientMenu.setScene(new Scene(root));
+            clientMenu.setTitle("CLIENT MENU");
+            clientMenu.show();
+        }catch (IncorrectFileNameException e){
+            e.getMessage();
+        }
     }
 
     public void inapoiAction() throws IOException {
-        hyperlinkPaginaInapoi.getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("../scene/ClientMenu.fxml"));
-        Stage paginaInapoi = new Stage();
-        paginaInapoi.setTitle("CLIENT MENU");
-        paginaInapoi.setScene(new Scene(root));
-        paginaInapoi.show();
+        try {
+            hyperlinkPaginaInapoi.getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("../scene/ClientMenu.fxml"));
+            Stage paginaInapoi = new Stage();
+            paginaInapoi.setTitle("CLIENT MENU");
+            paginaInapoi.setScene(new Scene(root));
+            paginaInapoi.show();
+        }catch (IncorrectFileNameException e){
+            e.getMessage();
+        }
     }
 
     public String getBookNameFromFile(){
