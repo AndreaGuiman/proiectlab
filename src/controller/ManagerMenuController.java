@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class ManagerMenuController {
     @FXML
-    Hyperlink afisareClienti, afisareCarti, afisareCereri, adaugaCarte;
+    Hyperlink hyperlinkafisareClienti, hyperlinkafisareCarti, hyperlinkafisareCereri, hyperlinkadaugaCarte;
     @FXML
     Button buttonLogOut;
     @FXML
@@ -36,7 +36,7 @@ public class ManagerMenuController {
     }
 
     public void showClients() throws IOException {
-        afisareClienti.getScene().getWindow().hide();
+        hyperlinkafisareClienti.getScene().getWindow().hide();
         Parent root = FXMLLoader.load(getClass().getResource("../scene/ShowClients.fxml"));
         Stage afClients = new Stage();
         afClients.setScene(new Scene(root));
@@ -45,7 +45,7 @@ public class ManagerMenuController {
     }
 
     public void showBooks() throws IOException {
-        afisareCarti.getScene().getWindow().hide();
+        hyperlinkafisareCarti.getScene().getWindow().hide();
         Parent root = FXMLLoader.load(getClass().getResource("../scene/ShowBooks.fxml"));
         Stage afBooks = new Stage();
         afBooks.setScene(new Scene(root));
@@ -54,7 +54,7 @@ public class ManagerMenuController {
     }
 
     public void showRequest() throws IOException {
-        afisareCereri.getScene().getWindow().hide();
+        hyperlinkafisareCereri.getScene().getWindow().hide();
         Parent root = FXMLLoader.load(getClass().getResource("../scene/ShowRequests.fxml"));
         Stage afRequest = new Stage();
         afRequest.setScene(new Scene(root));
@@ -63,7 +63,7 @@ public class ManagerMenuController {
     }
 
     public void addBook() throws IOException {
-        adaugaCarte.getScene().getWindow().hide();
+        hyperlinkadaugaCarte.getScene().getWindow().hide();
         Parent root = FXMLLoader.load(getClass().getResource("../scene/AddBook.fxml"));
         Stage addB = new Stage();
         addB.setScene(new Scene(root));

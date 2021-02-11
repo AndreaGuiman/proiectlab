@@ -1,26 +1,44 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Books;
 import model.Clients;
+import model.Requests;
 import model.Users;
+import service.BookService;
 import service.ClientService;
+import service.RequestService;
 import service.UserService;
+import wrapper.ClientAccountWrapper;
+import wrapper.RequestWrapper;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientAccountController {
     @FXML
     Hyperlink mainMenu;
     @FXML
     Label username, firstName, lastName, email,telNo;
+    @FXML
+    TableView<ClientAccountWrapper> tableRequests;
+    @FXML
+    TableColumn<ClientAccountWrapper, String> bookNameColumn, authorNameColumn;
+    @FXML
+    TableColumn<ClientAccountWrapper, Date> dateBorrowed, dateReturn;
 
     public void initialize() throws Exception {
         Clients clients = getClient();
@@ -30,8 +48,56 @@ public class ClientAccountController {
         lastName.setText(clients.getLastNameClient());
         email.setText(clients.getEmailClient());
         telNo.setText(clients.getTelephoneNumber());
+
+
+        List<Requests> requestsList = getAllRequest();
+        List<Books> bookList = getAllBooks();
+        List<ClientAccountWrapper> clientAccountWrapperList = new ArrayList<>();
+
+        for(Requests requestIterator: requestsList) {
+            if (requestIterator.getIdClient() == clients.getIdClient()) {
+                for(Books booksIterator: bookList){
+                    if(booksIterator.getIdBook() == requestIterator.getIdBook()){
+                        ClientAccountWrapper clientAccountWrapper = new ClientAccountWrapper(booksIterator, requestIterator);
+                        clientAccountWrapperList.add(clientAccountWrapper);
+                    }
+                }
+            }
+        }
+
+        bookNameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+        authorNameColumn.setCellValueFactory(new PropertyValueFactory<>("authorName"));
+        dateBorrowed.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        dateReturn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+
+        tableRequests.setItems(FXCollections.observableArrayList(clientAccountWrapperList));
+
+        invoice(clientAccountWrapperList);
     }
 
+    public void invoice(List<ClientAccountWrapper> clientAccountWrapperList){
+        for(ClientAccountWrapper clientAccountWrapperIterator: clientAccountWrapperList){
+            if(clientAccountWrapperIterator.getEndDate().compareTo(Date.valueOf(LocalDate.now())) == 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("A expirat termenul(" + clientAccountWrapperIterator.getEndDate() + ") de returnare a cartii " +
+                        clientAccountWrapperIterator.getBookName() + " scrisa de catre " + clientAccountWrapperIterator.getAuthorName());
+                alert.setTitle("NOTIFICARE RETURNARE CARTE");
+                alert.setHeaderText(null);
+                alert.show();
+            }
+        }
+    }
+
+    public List<Requests> getAllRequest(){
+        RequestService requestService= new RequestService();
+        return requestService.getAllRequests();
+
+    }
+
+    public List<Books> getAllBooks(){
+        BookService bookService= new BookService();
+        return bookService.getAllBooks();
+    }
 
     public void goToMainMenu() throws IOException {
         mainMenu.getScene().getWindow().hide();
